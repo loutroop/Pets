@@ -47,9 +47,13 @@ namespace Pets
             Timing.CallDelayed(2f, () =>
             {
                 if (!Data.ContainsKey(ev.Player.UserId)) Data.Add(ev.Player.UserId, Methods.LoadData(ev.Player.UserId));
-                if (Data[ev.Player.UserId].Pet_role != RoleType.None || Data[ev.Player.UserId].Pet_role.GetTeam() != Team.SCP) SpawnBot(ev.Player.Position, Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Data[ev.Player.UserId].Pet_role, "npc_pet", "default", ItemType.None, ev.Player.UserId);
             });
           
+        }
+        public void RoleChange(RoleChangeEvent ev)
+        {
+            if (ev.Player.Role != RoleType.Spectator&& ev.NewRole == RoleType.Spectator) return;
+            if (Data[ev.Player.UserId].Pet_role != RoleType.None || Data[ev.Player.UserId].Pet_role.GetTeam() != Team.SCP) Timing.CallDelayed(0.5f, () =>SpawnBot(ev.Player.Position, Vector3.zero, new Vector3(0.5f, 0.5f, 0.5f), Data[ev.Player.UserId].Pet_role, "npc_pet", "default", ItemType.None, ev.Player.UserId));
         }
         public void DiesEvent(DiesEvent ev)
         {

@@ -12,7 +12,7 @@ namespace Pets
     {
 
         public bool IsEnabled { get; set; } = true;
-        [Description("Which Role will the player's pet to be normally?It cannot be not a SCP")]
+        [Description("Which Role will the player's pet to be normally?")]
         public RoleType Pet_role { get; set; } = RoleType.None;
         public string Name { get; set; } = nameof(Pets);
     }

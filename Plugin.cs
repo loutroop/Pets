@@ -28,6 +28,7 @@ namespace Pets
             Qurre.Events.Scp173.Blink += Handlers.Blink;
             Qurre.Events.Player.ScpAttack += Handlers.ScpAttack;
             Qurre.Events.Player.Damage += Handlers.Damage;
+            Qurre.Events.Player.RoleChange += Handlers.RoleChange;
         }
 
         public override void Disable()
@@ -41,6 +42,7 @@ namespace Pets
             Qurre.Events.Scp173.Blink -= Handlers.Blink;
             Qurre.Events.Player.ScpAttack -= Handlers.ScpAttack;
             Qurre.Events.Player.Damage -= Handlers.Damage;
+            Qurre.Events.Player.RoleChange -= Handlers.RoleChange;
         }
     }
 }
