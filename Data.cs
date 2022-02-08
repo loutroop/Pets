@@ -27,7 +27,7 @@ namespace Pets
 				var _d = new Data()
 				{
 					UserId = userId,
-					Pet_role = RoleType.None,
+					Pet_role = plugin.CustomConfig.Pet_role,
 				};
 				string[] write = new[]
 				{
