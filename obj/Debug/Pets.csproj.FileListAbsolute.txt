@@ -1,0 +1,38 @@
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.csproj.AssemblyReference.cache
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.csproj.CoreCompileInputs.cache
+F:\code\Pets\Pets\bin\Debug\Pets.dll
+F:\code\Pets\Pets\bin\Debug\Pets.pdb
+F:\code\Pets\Pets\bin\Debug\Assembly-CSharp-firstpass.dll
+F:\code\Pets\Pets\bin\Debug\Assembly-CSharp_publicized.dll
+F:\code\Pets\Pets\bin\Debug\CommandSystem.Core.dll
+F:\code\Pets\Pets\bin\Debug\NorthwoodLib.dll
+F:\code\Pets\Pets\bin\Debug\Qurre.dll
+F:\code\Pets\Pets\bin\Debug\UnityEngine.CoreModule.dll
+F:\code\Pets\Pets\bin\Debug\UnityEngine.dll
+F:\code\Pets\Pets\bin\Debug\UnityEngine.PhysicsModule.dll
+F:\code\Pets\Pets\bin\Debug\UnityEngine.AudioModule.dll
+F:\code\Pets\Pets\bin\Debug\UnityEngine.AnimationModule.dll
+F:\code\Pets\Pets\bin\Debug\Mirror.dll
+F:\code\Pets\Pets\bin\Debug\DissonanceVoip.dll
+F:\code\Pets\Pets\bin\Debug\System.Memory.dll
+F:\code\Pets\Pets\bin\Debug\System.Buffers.dll
+F:\code\Pets\Pets\bin\Debug\Qurre.xml
+F:\code\Pets\Pets\obj\Debug\Pets.csproj.AssemblyReference.cache
+F:\code\Pets\Pets\obj\Debug\Pets.csproj.CoreCompileInputs.cache
+F:\code\Pets\Pets\obj\Debug\Pets.csproj.CopyComplete
+F:\code\Pets\Pets\obj\Debug\Pets.dll
+F:\code\Pets\Pets\obj\Debug\Pets.pdb
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.dll
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.pdb
+E:\Qurre Projects\Pets\Pets\bin\Debug\Pets.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\Pets.pdb
+E:\Qurre Projects\Pets\Pets\bin\Debug\Qurre.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\UnityEngine.PhysicsModule.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\UnityEngine.AudioModule.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\UnityEngine.AnimationModule.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\Mirror.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\DissonanceVoip.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\System.Memory.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\System.Buffers.dll
+E:\Qurre Projects\Pets\Pets\bin\Debug\Qurre.xml
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.csproj.CopyComplete
