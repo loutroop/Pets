@@ -1,19 +1,15 @@
 ﻿using Qurre.API.Addons;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Pets
 {
     public class Config : IConfig
     {
 
-        public bool IsEnabled { get; set; } = true;
+        public bool IsEnabled = true;
         [Description("Which Role will the player's pet to be normally?")]
         public RoleType Pet_role { get; set; } = RoleType.None;
+        [Description("Will SCP players have pets?")]
+        public bool pet_with_scp { get; set; } = false;
         public string Name { get; set; } = nameof(Pets);
     }
 }

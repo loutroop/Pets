@@ -22,8 +22,22 @@ F:\code\Pets\Pets\obj\Debug\Pets.csproj.CoreCompileInputs.cache
 F:\code\Pets\Pets\obj\Debug\Pets.csproj.CopyComplete
 F:\code\Pets\Pets\obj\Debug\Pets.dll
 F:\code\Pets\Pets\obj\Debug\Pets.pdb
-E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.dll
-E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.pdb
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\Pets.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\Pets.pdb
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\Qurre.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\UnityEngine.PhysicsModule.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\UnityEngine.AudioModule.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\UnityEngine.AnimationModule.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\Mirror.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\DissonanceVoip.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\System.Memory.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\System.Buffers.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\bin\Debug\Qurre.xml
+C:\Users\user_2012190892\Downloads\Pets\Pets\obj\Debug\Pets.csproj.AssemblyReference.cache
+C:\Users\user_2012190892\Downloads\Pets\Pets\obj\Debug\Pets.csproj.CoreCompileInputs.cache
+C:\Users\user_2012190892\Downloads\Pets\Pets\obj\Debug\Pets.csproj.CopyComplete
+C:\Users\user_2012190892\Downloads\Pets\Pets\obj\Debug\Pets.dll
+C:\Users\user_2012190892\Downloads\Pets\Pets\obj\Debug\Pets.pdb
 E:\Qurre Projects\Pets\Pets\bin\Debug\Pets.dll
 E:\Qurre Projects\Pets\Pets\bin\Debug\Pets.pdb
 E:\Qurre Projects\Pets\Pets\bin\Debug\Qurre.dll
@@ -36,3 +50,5 @@ E:\Qurre Projects\Pets\Pets\bin\Debug\System.Memory.dll
 E:\Qurre Projects\Pets\Pets\bin\Debug\System.Buffers.dll
 E:\Qurre Projects\Pets\Pets\bin\Debug\Qurre.xml
 E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.csproj.CopyComplete
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.dll
+E:\Qurre Projects\Pets\Pets\obj\Debug\Pets.pdb
