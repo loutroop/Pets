@@ -10,8 +10,8 @@ namespace Pets
 {
     public class EventHandlers
     {
-        public readonly Plugin plugin;
-        public EventHandlers(Plugin plugin) => this.plugin = plugin;
+        private static Plugin plugin;
+        public EventHandlers(Plugin plug) => plugin = plug;
         public static Dictionary<string, Data> Data = new();
         public static void SpawnBot(Vector3 pos, Vector2 rot, Vector3 scale, RoleType role, string role_text, string role_color,
             ItemType itemType = ItemType.None, string name = "npc", float WalkSpeed = 5f, float RunSpeed = 7f)
@@ -22,6 +22,7 @@ namespace Pets
                 WalkSpeed = WalkSpeed,
                 RunSpeed = RunSpeed
             };
+            npc.Player.DisplayNickname = plugin.CustomConfig.pet_displaynickname.Replace("{owner}", Player.Get(npc.Name).Nickname);
             if (itemType != ItemType.None) npc.ItemInHand = itemType;
         }
         public void RoundStart()
@@ -68,24 +69,35 @@ namespace Pets
                 
             });
         }
+        public void OnTransmitData(TransmitPlayerDataEvent ev)
+        {
+            if (!ev.PlayerToShow.Bot) return;
+
+            Player pl = Player.Get(ev.PlayerToShow.Nickname);
+            if (pl is null) return;
+
+            if (pl.Team == Team.CDP || pl.Team == Team.CHI)
+            {
+                if (ev.Player.Team == Team.SCP || ev.Player.Team == Team.RSC || ev.Player.Team == Team.MTF) ev.Invisible = true;
+            }
+
+            else if (pl.Team == Team.RSC || pl.Team == Team.MTF)
+            {
+                if (ev.Player.Team == Team.SCP || ev.Player.Team == Team.CHI || ev.Player.Team == Team.CDP) ev.Invisible = true;
+            }
+
+            else if (pl.Team == Team.SCP && ev.Player.Team != Team.SCP) ev.Invisible = true;
+        }
         public void RoleChange(RoleChangeEvent ev)
         {
             if (ev.Player.Role != RoleType.Spectator && ev.NewRole == RoleType.Spectator) return;
+            if (ev.Player.Role == RoleType.Tutorial && plugin.CustomConfig.WaitAndChilUsing) return;
             if (!plugin.CustomConfig.pet_with_scp && ev.NewRole.GetTeam() == Team.SCP) return;
             Timing.CallDelayed(05f, () =>
             {
                 if (Methods.LoadData(ev.Player.UserId).Pet_role != RoleType.None) SpawnBot(ev.Player.Position, Vector3.zero,
                     new(0.5f, 0.5f, 0.5f), Methods.LoadData(ev.Player.UserId).Pet_role, "npc_pet", "default", ItemType.None, ev.Player.UserId);
             });
-        }
-        public void DiesEvent(DiesEvent ev)
-        {
-            if (ev.Target.Bot) return;
-            ev.Allowed = false;
-            foreach (var bot in Map.Bots.Where(x => x.Name == ev.Target.UserId))
-            {
-                Timing.CallDelayed(0.5f, () => ev.Target.Position = bot.Position + Vector3.up);
-            }
         }
         public IEnumerator<float> PetWalk()
         {
