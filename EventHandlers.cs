@@ -10,8 +10,6 @@ namespace Pets
 {
     public class EventHandlers
     {
-        private static Plugin plugin;
-        public EventHandlers(Plugin plug) => plugin = plug;
         public static Dictionary<string, Data> Data = new();
         public static void SpawnBot(Vector3 pos, Vector2 rot, Vector3 scale, RoleType role, string role_text, string role_color,
             ItemType itemType = ItemType.None, string name = "npc", float WalkSpeed = 5f, float RunSpeed = 7f)
@@ -22,7 +20,7 @@ namespace Pets
                 WalkSpeed = WalkSpeed,
                 RunSpeed = RunSpeed
             };
-            npc.Player.DisplayNickname = plugin.CustomConfig.pet_displaynickname.Replace("{owner}", Player.Get(npc.Name).Nickname);
+            npc.Player.DisplayNickname = Plugin.CustomConfig.pet_displaynickname.Replace("{owner}", Player.Get(npc.Name).Nickname);
             if (itemType != ItemType.None) npc.ItemInHand = itemType;
         }
         public void RoundStart()
@@ -59,18 +57,18 @@ namespace Pets
         public void JoinEvent(JoinEvent ev)
         {
             if (!Round.Started) return;
-            Timing.CallDelayed(2f, () =>
+            Timing.CallDelayed(1f, () =>
             {
                 if (!Data.TryGetValue(ev.Player.UserId, out var data))
                 {
                     data = Methods.LoadData(ev.Player.UserId);
                     Data.Add(ev.Player.UserId, data);
                 }
-                
             });
         }
         public void OnTransmitData(TransmitPlayerDataEvent ev)
         {
+            if (ev.Player.Bot) return;
             if (!ev.PlayerToShow.Bot) return;
 
             Player pl = Player.Get(ev.PlayerToShow.Nickname);
@@ -88,17 +86,6 @@ namespace Pets
 
             else if (pl.Team == Team.SCP && ev.Player.Team != Team.SCP) ev.Invisible = true;
         }
-        public void RoleChange(RoleChangeEvent ev)
-        {
-            if (ev.Player.Role != RoleType.Spectator && ev.NewRole == RoleType.Spectator) return;
-            if (ev.Player.Role == RoleType.Tutorial && plugin.CustomConfig.WaitAndChilUsing) return;
-            if (!plugin.CustomConfig.pet_with_scp && ev.NewRole.GetTeam() == Team.SCP) return;
-            Timing.CallDelayed(05f, () =>
-            {
-                if (Methods.LoadData(ev.Player.UserId).Pet_role != RoleType.None) SpawnBot(ev.Player.Position, Vector3.zero,
-                    new(0.5f, 0.5f, 0.5f), Methods.LoadData(ev.Player.UserId).Pet_role, "npc_pet", "default", ItemType.None, ev.Player.UserId);
-            });
-        }
         public IEnumerator<float> PetWalk()
         {
             while (Round.Started)
@@ -107,16 +94,19 @@ namespace Pets
                 {
                     foreach (var pl in Player.List.Where(x => x.UserId == bot.Name))
                     {
-                        try { if (Vector3.Distance(pl.Position, bot.Position) > 1) bot.RotateToPosition(pl.Position); } catch { }
+                        var distance = Vector3.Distance(pl.Position, bot.Position);
+                        try { if (distance > 1) bot.RotateToPosition(pl.Position); } catch { }
                         try
                         {
-                            if (Vector3.Distance(pl.Position, bot.Position) < 1) bot.Direction = MovementDirection.Stop;
+                            if (distance < 1) bot.Direction = MovementDirection.Stop;
                             else
                             {
                                 bot.Direction = MovementDirection.Forward;
-                                if (Vector3.Distance(pl.Position, bot.Position) < 3) bot.Movement = PlayerMovementState.Sneaking;
-                                else if (Vector3.Distance(pl.Position, bot.Position) < 6) bot.Movement = PlayerMovementState.Walking;
-                                else if (Vector3.Distance(pl.Position, bot.Position) < 10) bot.Movement = PlayerMovementState.Sprinting;
+                                if (distance < 10)
+                                {
+                                    bot.Movement = PlayerMovementState.Sprinting;
+                                    bot.RunSpeed = distance * 2;
+                                }
                                 else bot.Position = pl.Position;
                             }
                         }

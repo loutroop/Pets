@@ -10,7 +10,6 @@ namespace Pets
 	}
 	public class Methods
 	{
-		public static Plugin plugin;
 		internal static string StatFilePath = Path.Combine(Qurre.PluginManager.PluginsDirectory, "Pets");
 		public static Data LoadData(string userId)
 		{
@@ -20,9 +19,10 @@ namespace Pets
 			var _d = new Data()
 			{
 				UserId = userId,
-				Pet_role = plugin.CustomConfig.Pet_role,
+				Pet_role = Plugin.CustomConfig.Pet_role,
 			};
 			string[] write = new[] { _d.UserId, _d.Pet_role.ToString() };
+			File.Create(path).Close();
 			File.WriteAllLines(path, write);
 			return _d;
 		}
