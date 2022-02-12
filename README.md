@@ -12,7 +12,7 @@ WaitAndChilUsing: false
 Name: Pets
 ```
 How can i use it?
-1.join the server,then exit,and you can see there is a file named "mysteam64id@steam" in "pets" floder
-2.open the file
+1.join the server,then exit,and you can see there is a file named "mysteam64id@steam" in "pets" floder\n
+2.open the file\n
 3.change the default value "None" to other role names(if roletype "pet_role" in pet's customconig is "None")
-last,save this file and restart your server
+last,save this file and restart your server\n
