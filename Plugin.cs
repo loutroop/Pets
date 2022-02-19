@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 namespace Pets
 {
     public class Plugin : Qurre.Plugin
@@ -6,7 +8,7 @@ namespace Pets
         public override string Developer => "Loutroop2107 && fydne";
         public override string Name => nameof(Pets);
         public override Version NeededQurreVersion => new(1, 11, 10);
-        public override Version Version => new(1, 0, 4);
+        public override Version Version => new(1, 0, 5);
         public static Config CustomConfig { get; private set; }
         public EventHandlers Handlers;
         public override void Enable()
@@ -24,6 +26,7 @@ namespace Pets
             Qurre.Events.Player.Damage += Handlers.Damage;
             Qurre.Events.Player.ScpAttack += Handlers.ScpAttack;
             Qurre.Events.Player.TransmitPlayerData += Handlers.OnTransmitData;
+            if (!Directory.Exists(Methods.StatFilePath)) Directory.CreateDirectory(Methods.StatFilePath);
         }
 
         public override void Disable()
