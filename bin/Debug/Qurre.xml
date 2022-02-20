@@ -12,41 +12,104 @@
              <para>Model.AddPart(new ModelLight(Model, new Color(1, 0, 0), Vector3.zero, 1, 10));</para>
             </summary>
         </member>
-        <member name="M:Qurre.API.Audio.Play(System.IO.Stream,System.Single)">
+        <member name="M:Qurre.API.DataBase.Collection.Find(MongoDB.Bson.BsonDocument)">
             <summary>
-            <para>Plays music from the stream.</para>
-            <para>format - WaveFormat(48000, 1) /*(.ogg)*/</para>
+            <para>Finds all documents in the collection with the given parameters.</para>
             <para>Example:</para>
              <example>
              <code>
-             Play(new MemoryStream(audio), 1);
+             List&lt;BsonDocument&gt; Documents = Collection.Find(new BsonDocument("UserId", Player.UserId));
+             </code>
+             Find and Parse
+             <code>
+             IEnumerable&lt;T&gt; Documents = Collection.Find(new BsonDocument("UserId", Player.UserId)).Select(x => Collection.ParseBson&lt;T&gt;(x));
              </code>
              </example>
             </summary>
         </member>
-        <member name="M:Qurre.API.Audio.PlayFromFile(System.String,System.Single)">
+        <member name="M:Qurre.API.DataBase.Collection.Find(System.Linq.Expressions.Expression{System.Func{MongoDB.Bson.BsonDocument,System.Boolean}})">
             <summary>
-            <para>Plays music from a file.</para>
-            <para>format - WaveFormat(48000, 1) /*(.ogg)*/</para>
+            <para>Finds all documents in the collection with a search format.</para>
             <para>Example:</para>
              <example>
              <code>
-             PlayFromFile($"{PluginManager.PluginsDirectory}/audio/OmegaWarhead.raw", 1);
+             List&lt;BsonDocument&gt; Documents = Collection.Find(_ => true);
+             </code>
+             Find and Parse
+             <code>
+             IEnumerable&lt;T&gt; Documents = Collection.Find(_ => true).Select(x => Collection.ParseBson&lt;T&gt;(x));
              </code>
              </example>
             </summary>
         </member>
-        <member name="M:Qurre.API.Audio.PlayFromUrl(System.String,System.Single)">
+        <member name="M:Qurre.API.DataBase.Collection.UpdateOne(MongoDB.Driver.FilterDefinition{MongoDB.Bson.BsonDocument},MongoDB.Driver.UpdateDefinition{MongoDB.Bson.BsonDocument},MongoDB.Driver.UpdateOptions)">
             <summary>
-            <para>Plays music from a link.</para>
-            <para>format - WaveFormat(48000, 1) /*(.ogg)*/</para>
+            <para>Updates the first document in the collection that matches the parameters.</para>
             <para>Example:</para>
              <example>
              <code>
-             PlayFromUrl("https://cdn.scpsl.store/qurre/audio/OmegaWarhead.raw", 1);
+             var filter = Builds.Filter.Eq("UserId", Player.UserId);
+             var update = Builds.Update.Set("level", 10);
+             Collection.UpdateOne(filter, update);
              </code>
              </example>
             </summary>
+        </member>
+        <member name="M:Qurre.API.DataBase.Collection.UpdateAll(MongoDB.Driver.FilterDefinition{MongoDB.Bson.BsonDocument},MongoDB.Driver.UpdateDefinition{MongoDB.Bson.BsonDocument},MongoDB.Driver.UpdateOptions)">
+            <summary>
+            <para>Updates all documents in the collection that match the parameters.</para>
+            <para>Example:</para>
+             <example>
+             <code>
+             var filter = Builds.Filter.Eq("UserId", Player.UserId);
+             var update = Builds.Update.Set("level", 10);
+             Collection.UpdateAll(filter, update);
+             </code>
+             </example>
+            </summary>
+        </member>
+        <member name="M:Qurre.API.DataBase.Collection.ReplaceOne(MongoDB.Driver.FilterDefinition{MongoDB.Bson.BsonDocument},MongoDB.Bson.BsonDocument,MongoDB.Driver.ReplaceOptions)">
+            <summary>
+            <para>Replaces the first document in the collection that matches the parameters.</para>
+            <para>Example:</para>
+             <example>
+             <code>
+             var filter = Builds.Filter.Eq("UserId", Player.UserId);
+             Collection.ReplaceOne(filter, BsonDocument);
+             </code>
+             </example>
+            </summary>
+        </member>
+        <member name="M:Qurre.API.DataBase.Collection.ParseBson``1(MongoDB.Bson.BsonDocument)">
+            <summary>
+            <para>Parse BsonDocument into your class.</para>
+            <para>Example:</para>
+             <example>
+             <code>
+             T Data = Collection.ParseBson&lt;T&gt;(BsonDocument);
+             or
+             MyClass Data = Collection.ParseBson&lt;MyClass&gt;(BsonDocument);
+             </code>
+             </example>
+            </summary>
+        </member>
+        <member name="F:Qurre.API.DataBase.Collection.MongoDB">
+            <summary>
+            <para>MongoDB class, if you are missing something in this class.</para>
+            </summary>
+        </member>
+        <member name="M:Qurre.API.DataBase.Client.GetDatabase(System.String)">
+            <summary>
+            MongoDB hierarchy:
+            <code>
+            ⠀| Client
+            ⠀| - DataBase
+            ⠀   | - Collection
+            ⠀      | - Document
+            </code>
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
         </member>
         <member name="F:Qurre.API.Objects.AmmoType.Ammo556">
             <summary>
@@ -116,6 +179,28 @@
         <member name="P:Qurre.API.Player.BlockSpawnTeleport">
             <summary>
             <para>After spawning, it becomes false again.</para>
+            </summary>
+        </member>
+        <member name="M:Qurre.API.Audio.#ctor(System.String,System.Byte,System.Boolean)">
+            <summary>
+            <para>Plays music from a file.</para>
+            <para>Example:</para>
+             <example>
+             <code>
+             new Audio($"{PluginManager.PluginsDirectory}/Audio/OmegaWarhead.raw", 100, true);
+             </code>
+             </example>
+            </summary>
+        </member>
+        <member name="M:Qurre.API.Audio.#ctor(System.IO.Stream,System.Byte,System.Boolean)">
+            <summary>
+            <para>Plays music from the stream.</para>
+            <para>Example:</para>
+             <example>
+             <code>
+             new Audio(new MemoryStream(audio), 100, false);
+             </code>
+             </example>
             </summary>
         </member>
         <member name="P:Qurre.Plugin.Priority">
