@@ -41,6 +41,7 @@ namespace Pets
                     yield return Timing.WaitForSeconds(0.1f);
                 }
                 Timing.RunCoroutine(PetWalk(), "PetsWalks");
+                Timing.RunCoroutine(CorrectSide(), "CorrectSide");
                 yield break;
             }
         }
@@ -48,13 +49,13 @@ namespace Pets
         {
             Timing.KillCoroutines("PetsWalks");
             Timing.KillCoroutines("CreatingPetsRoundStart");
-            foreach (var bot in Map.Bots)
-                bot.Destroy();
+            Timing.KillCoroutines("CorrectSide");
         }
         public void RoundEnd()
         {
             Timing.KillCoroutines("PetsWalks");
             Timing.KillCoroutines("CreatingPetsRoundStart");
+            Timing.KillCoroutines("CorrectSide");
         }
         public void JoinEvent(JoinEvent ev)
         {
@@ -87,6 +88,21 @@ namespace Pets
             }
 
             else if (pl.Team == Team.SCP && ev.Player.Team != Team.SCP) ev.Invisible = true;
+        }
+        public IEnumerator<float> CorrectSide()
+        {
+            while (Round.Started)
+            {
+                foreach (var bot in Map.Bots)
+                {
+                    foreach (var pl in Player.List.Where(x => x.UserId == bot.Name))
+                    {
+                        if (bot.Player.Side != pl.Side) bot.Position = pl.Position;
+                    }
+                }
+                yield return Timing.WaitForSeconds(0.5f);
+            }
+            yield break;
         }
         public IEnumerator<float> PetWalk()
         {
