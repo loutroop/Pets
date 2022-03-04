@@ -48,6 +48,8 @@ namespace Pets
         {
             Timing.KillCoroutines("PetsWalks");
             Timing.KillCoroutines("CreatingPetsRoundStart");
+            foreach (var bot in Map.Bots)
+                bot.Destroy();
         }
         public void RoundEnd()
         {
