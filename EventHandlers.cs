@@ -14,12 +14,13 @@ namespace Pets
         public static void SpawnBot(Vector3 pos, Vector2 rot, Vector3 scale, RoleType role, string role_text, string role_color,
             ItemType itemType = ItemType.None, string name = "npc", float WalkSpeed = 5f, float RunSpeed = 7f)
         {
-            var npc = new Bot(pos, rot, role, name, role_text, role_color)
+            var npc = new Bot(pos, rot, RoleType.Tutorial, name, role_text, role_color)
             {
                 Scale = scale,
                 WalkSpeed = WalkSpeed,
                 RunSpeed = RunSpeed
             };
+            npc.Player.ChangeModel(role);
             npc.Player.DisplayNickname = Plugin.CustomConfig.pet_displaynickname.Replace("{owner}", Player.Get(npc.Name).Nickname);
             if (itemType != ItemType.None) npc.ItemInHand = itemType;
         }

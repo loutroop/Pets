@@ -46,8 +46,8 @@
     <Reference Include="NorthwoodLib">
       <HintPath>..\..\Qurre\Qurre\lib\NorthwoodLib.dll</HintPath>
     </Reference>
-    <Reference Include="Qurre, Version=1.12.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Qurre.1.12.1\lib\net472\Qurre.dll</HintPath>
+    <Reference Include="Qurre, Version=1.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Qurre.1.13.0\lib\net472\Qurre.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

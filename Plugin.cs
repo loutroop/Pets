@@ -8,7 +8,7 @@ namespace Pets
         public override string Developer => "Loutroop2107 && fydne";
         public override string Name => nameof(Pets);
         public override Version NeededQurreVersion => new(1, 12, 1);
-        public override Version Version => new(1, 0, 7);
+        public override Version Version => new(1, 0, 8);
         public static Config CustomConfig { get; private set; }
         public EventHandlers Handlers;
         public override void Enable()
